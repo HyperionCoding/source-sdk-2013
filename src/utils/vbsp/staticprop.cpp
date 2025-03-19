@@ -41,6 +41,7 @@ static CUtlVector<StaticPropLeafLump_t>	s_StaticPropLeafLump;
 //-----------------------------------------------------------------------------
 struct StaticPropBuild_t
 {
+	int		m_Id;
 	char const* m_pModelName;
 	char const* m_pLightingOrigin;
 	Vector	m_Origin;
@@ -486,7 +487,8 @@ static void AddStaticPropToLump( StaticPropBuild_t const& build )
 
 	if ( !leafList.Count() )
 	{
-		Warning( "Static prop %s outside the map (%.2f, %.2f, %.2f)\n", build.m_pModelName, build.m_Origin.x, build.m_Origin.y, build.m_Origin.z );
+		Warning( "Static prop %s (id %d) outside the map (%.2f, %.2f, %.2f)\n",
+			build.m_pModelName, build.m_Id, build.m_Origin.x, build.m_Origin.y, build.m_Origin.z );
 		return;
 	}
 	// Insert an element into the lump data...
@@ -598,6 +600,7 @@ void EmitStaticProps()
 
 			GetVectorForKey( &entities[i], "origin", build.m_Origin );
 			GetAnglesForKey( &entities[i], "angles", build.m_Angles );
+			build.m_Id = IntForKey( &entities[i], "hammerid" );
 			build.m_pModelName = ValueForKey( &entities[i], "model" );
 			build.m_Solid = IntForKey( &entities[i], "solid" );
 			build.m_Skin = IntForKey( &entities[i], "skin" );

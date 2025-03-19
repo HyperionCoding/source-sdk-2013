@@ -85,14 +85,19 @@ MaterialSystemMaterial_t GetMatIDFromDisp( mapdispinfo_t *pMapDisp )
 // check this and disable virtual mesh if in use
 bool Disp_HasPower4Displacements()
 {
+	bool hasPower4 = false;
+
 	for ( int i = 0; i < g_CoreDispInfos.Count(); i++ )
 	{
 		if ( g_CoreDispInfos[i]->GetPower() > 3 )
 		{
-			return true;
+			Vector pos = g_CoreDispInfos[i]->GetCornerPoint( CORNER_LOWER_LEFT );
+			Warning( "Power 4 displacement near (%.2f, %.2f, %.2f)\n", pos.x, pos.y, pos.z );
+			hasPower4 = true;
 		}
 	}
-	return false;
+
+	return hasPower4;
 }
 
 // adds all displacement faces as a series of convex objects
