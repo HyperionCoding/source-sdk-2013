@@ -42,7 +42,7 @@ $Configuration
 
 	$Compiler [$WIN32]
 	{
-		$EnableEnhancedInstructionSet	"Streaming SIMD Extensions (/arch:SSE)"
+		$EnableEnhancedInstructionSet	"Advanced Vector Extensions (/arch:AVX)"
 	}
 	
 	$Linker
@@ -58,9 +58,10 @@ $Configuration
 	
 	$PreBuildEvent
 	{
-		$CommandLine		"if EXIST $OUTBINDIR\$(TargetFileName) for /f $QUOTEdelims=$QUOTE %%A in ('attrib $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE') do set valveTmpIsReadOnly=$QUOTE%%A$QUOTE" "\n" \
-							"set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%" "\n" \
-							"if $QUOTE%valveTmpIsReadOnlyLetter%$QUOTE==$QUOTER$QUOTE del /q $QUOTE$(TargetDir)$QUOTE$(TargetFileName)" "\n" \
+		$CommandLine		"if EXIST $OUTBINDIR\$(TargetFileName) (" "\n" \
+							"    attrib $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE | find $QUOTER$QUOTE >nul" "\n" \
+							"    if not errorlevel 1 del /q $QUOTE$(TargetDir)$QUOTE$(TargetFileName)" "\n" \
+							")" "\n" \
 							"$HOST_VPC_EXE -crc2 $QUOTE$VPC_OUTPUT_FILE$QUOTE" "\n"
 	}
 

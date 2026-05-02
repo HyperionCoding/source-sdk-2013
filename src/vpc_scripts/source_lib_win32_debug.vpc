@@ -93,7 +93,7 @@ $Configuration "Debug"
 		$StructMemberAlignment
 		$BufferSecurityCheck				"Yes"
 		$EnableFunctionLevelLinking
-		$EnableEnhancedInstructionSet
+		$EnableEnhancedInstructionSet		"Advanced Vector Extensions (/arch:AVX)"
 		$FloatingPointModel					"Fast (/fp:fast)"
 		$EnableFloatingPointExceptions
 
