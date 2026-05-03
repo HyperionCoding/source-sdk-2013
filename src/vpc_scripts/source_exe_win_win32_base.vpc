@@ -61,10 +61,7 @@ $Configuration
 	
 	$PreBuildEvent
 	{
-		$CommandLine		"if EXIST $OUTBINDIR\$(TargetFileName) (" "\n" \
-							"    attrib $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE | find $QUOTER$QUOTE >nul" "\n" \
-							"    if not errorlevel 1 del /q $QUOTE$(TargetDir)$QUOTE$(TargetFileName)" "\n" \
-							")" "\n"
+		$CommandLine		"call $SRCDIR\devtools\bin\source_exe_win_win32_base_prebuild.bat $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE $QUOTE$(TargetDir)$QUOTE" "\n"
 	}
 
 	$PostBuildEvent [!$ANALYZE]

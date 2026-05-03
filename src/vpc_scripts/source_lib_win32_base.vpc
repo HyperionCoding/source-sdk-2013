@@ -44,17 +44,7 @@ $Configuration
 	
 	$PreBuildEvent
 	{
-		$CommandLine		"if EXIST $OUTLIBDIR\$(TargetName).lib (" "\n" \
-							"    attrib $QUOTE$OUTLIBDIR\$(TargetName).lib$QUOTE | find $QUOTER$QUOTE >nul" "\n" \
-							"    if not errorlevel 1 (" "\n" \
-							"        attrib -r $OUTLIBDIR\$(TargetName).lib" "\n" \
-							"        $SRCDIR\devtools\bin\gnu\touch.exe -d $QUOTE1999-01-01$QUOTE $OUTLIBDIR\$(TargetName).lib" "\n" \
-							"        attrib +r $OUTLIBDIR\$(TargetName).lib" "\n" \
-							"    )" "\n" \
-							") else (" "\n" \
-							"    mkdir $OUTLIBDIR" "\n" \
-							")" "\n" \
-							"$HOST_VPC_EXE -crc2 $QUOTE$VPC_OUTPUT_FILE$QUOTE" "\n"
+		$CommandLine		"call $SRCDIR\devtools\bin\source_win32_base_prebuild.bat $QUOTE$OUTLIBDIR\$(TargetName).lib$QUOTE $QUOTE$OUTLIBDIR$QUOTE $QUOTE$SRCDIR\devtools\bin\gnu\touch.exe$QUOTE $QUOTE$HOST_VPC_EXE$QUOTE $QUOTE$VPC_OUTPUT_FILE$QUOTE" "\n"
 	}
 
 	$PreLinkEvent [!$ANALYZE && !$SOURCESDK && !$JOSH]

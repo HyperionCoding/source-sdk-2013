@@ -58,11 +58,7 @@ $Configuration
 	
 	$PreBuildEvent
 	{
-		$CommandLine		"if EXIST $OUTBINDIR\$(TargetFileName) (" "\n" \
-							"    attrib $QUOTE$OUTBINDIR\$(TargetFileName)$QUOTE | find $QUOTER$QUOTE >nul" "\n" \
-							"    if not errorlevel 1 del /q $QUOTE$(TargetDir)$QUOTE$(TargetFileName)" "\n" \
-							")" "\n" \
-							"$HOST_VPC_EXE -crc2 $QUOTE$VPC_OUTPUT_FILE$QUOTE" "\n"
+		$CommandLine		"call $SRCDIR\devtools\bin\source_win32_base_prebuild.bat $QUOTE$OUTBINDIR\$(TargetName).lib$QUOTE $QUOTE$OUTBINDIR$QUOTE $QUOTE$SRCDIR\devtools\bin\gnu\touch.exe$QUOTE $QUOTE$HOST_VPC_EXE$QUOTE $QUOTE$VPC_OUTPUT_FILE$QUOTE" "\n"
 	}
 
 	$PostBuildEvent [!$ANALYZE]
