@@ -10,6 +10,16 @@ $MacroRequired VPC_TRIVIAL_DEPENDENCY_PATH "$SRCDIR/vpc_scripts/vpc_trivial_depe
 
 $Macro "DEFAULT_RUN_ARGS" "-dev -w 1920 -h 1080 -windowed"
 
+$Macro "FLAGS_DEPR"		"-Wno-deprecated-register -Wno-deprecated-copy-with-user-provided-copy"
+$Macro "FLAGS_OVERRIDE" "-Wno-inconsistent-missing-override -Wno-overloaded-virtual"
+$Macro "FLAGS_UNUSED"	"-Wno-unused-variable -Wno-unused-function -Wno-unused-private-field -Wno-unused-but-set-variable"
+$Macro "FLAGS_TYPE"		"-Wno-ignored-qualifiers -Wno-sign-compare -Wno-missing-field-initializers -Wno-unicode"
+$Macro "FLAGS_CAST"		"-Wno-int-to-void-pointer-cast -Wno-int-to-pointer-cast -Wno-void-pointer-to-int-cast -Wno-undefined-bool-conversion"
+$Macro "FLAGS_MISC"		"-Wno-reorder-ctor -Wno-writable-strings -Wno-tautological-overlap-compare -Wno-nonportable-include-path -Wno-switch"
+$Macro "FLAGS_WINDOWS"	"-Wno-microsoft-enum-forward-reference -Wno-microsoft-template -Wno-microsoft-cast"
+
+$Macro "DISABLE_WARNING_FLAGS" "$FLAGS_DEPR $FLAGS_OVERRIDE $FLAGS_UNUSED $FLAGS_TYPE $FLAGS_CAST $FLAGS_MISC $FLAGS_WINDOWS"
+
 $Configuration "Debug"
 {
 	$Compiler
@@ -20,6 +30,8 @@ $Configuration "Debug"
 		$PreprocessorDefinitions		"$BASE;USE_MEM_DEBUG" [$USE_MEM_DEBUG]
 		$PreprocessorDefinitions		"$BASE;SOURCESDK" [$SOURCESDK]
 		$PreprocessorDefinitions		"$BASE;SOURCE_HAS_FREETYPE"
+
+		$AdditionalOptions				"$BASE $DISABLE_WARNING_FLAGS"
 	}
 }
 
@@ -31,5 +43,7 @@ $Configuration "Release"
 		$PreprocessorDefinitions		"VPC"
 		$PreprocessorDefinitions		"$BASE;SOURCESDK" [$SOURCESDK]
 		$PreprocessorDefinitions		"$BASE;SOURCE_HAS_FREETYPE"
+
+		$AdditionalOptions				"$BASE $DISABLE_WARNING_FLAGS"
 	}
 }

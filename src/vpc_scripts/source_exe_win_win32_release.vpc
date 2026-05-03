@@ -143,7 +143,7 @@ $Configuration "Release"
 		// http://randomascii.wordpress.com/2013/09/11/debugging-optimized-codenew-in-visual-studio-2012/
 		$AdditionalOptions					"$BASE /Zo"
 		// Command Line
-		$AdditionalOptions						"$BASE /Oy-"	[$NOFPO]
+		$AdditionalOptions					"$BASE /Oy-"	[$NOFPO]
 	}
 
 	$Linker

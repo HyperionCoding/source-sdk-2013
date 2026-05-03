@@ -137,7 +137,7 @@ $Configuration "Release"
 		$OmitDefaultLibraryNames
 		$ErrorReporting						"Prompt Immediately (/errorReport:prompt)"
 
-		$AdditionalOptions					"/Zm200"
+		$AdditionalOptions					"$BASE /Zm200"
 		// Enable extra debugging information. This switch requires VS 2013 Update 3.
 		// With VS 2013 make sure that Edit-And-Continue is disabled in the debugger settings so that
 		// the debugger uses the enhanced debug information.
