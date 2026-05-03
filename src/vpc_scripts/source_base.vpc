@@ -15,7 +15,7 @@ $Macro "FLAGS_OVERRIDE" "-Wno-inconsistent-missing-override -Wno-overloaded-virt
 $Macro "FLAGS_UNUSED"	"-Wno-unused-variable -Wno-unused-function -Wno-unused-private-field -Wno-unused-but-set-variable"
 $Macro "FLAGS_TYPE"		"-Wno-ignored-qualifiers -Wno-sign-compare -Wno-missing-field-initializers -Wno-unicode"
 $Macro "FLAGS_CAST"		"-Wno-int-to-void-pointer-cast -Wno-int-to-pointer-cast -Wno-void-pointer-to-int-cast -Wno-undefined-bool-conversion"
-$Macro "FLAGS_MISC"		"-Wno-reorder-ctor -Wno-writable-strings -Wno-tautological-overlap-compare -Wno-nonportable-include-path -Wno-switch"
+$Macro "FLAGS_MISC"		"-Wno-reorder-ctor -Wno-delete-abstract-non-virtual-dtor -Wno-writable-strings -Wno-tautological-overlap-compare -Wno-nonportable-include-path -Wno-switch -Wno-expansion-to-defined"
 $Macro "FLAGS_WINDOWS"	"-Wno-microsoft-enum-forward-reference -Wno-microsoft-template -Wno-microsoft-cast"
 
 $Macro "DISABLE_WARNING_FLAGS" "$FLAGS_DEPR $FLAGS_OVERRIDE $FLAGS_UNUSED $FLAGS_TYPE $FLAGS_CAST $FLAGS_MISC $FLAGS_WINDOWS"
