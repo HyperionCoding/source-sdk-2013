@@ -918,7 +918,7 @@ int RunVBSP( int argc, char **argv )
 
 	Q_StripExtension( ExpandArg( argv[ argc-1 ] ), source, sizeof( source ) );
 	Q_FileBase( source, mapbase, sizeof( mapbase ) );
-	strlwr( mapbase );
+	Q_strlower( mapbase );
 
 	// Maintaining legacy behavior here to avoid breaking tools: regardless of the extension we are passed, we strip it
 	// to get the "source" name, and append extensions as desired...
@@ -932,7 +932,7 @@ int RunVBSP( int argc, char **argv )
 
 	for (i=1 ; i<argc ; i++)
 	{
-		if (!stricmp(argv[i],"-threads"))
+		if (!Q_stricmp(argv[i],"-threads"))
 		{
 			numthreads = atoi (argv[i+1]);
 			i++;
@@ -1354,7 +1354,7 @@ int RunVBSP( int argc, char **argv )
 		g_nCubemapSamples = 0;
 
 		// Mark as stale since the lighting could be screwed with new ents.
-		AddBufferToPak( GetPakFile(), "stale.txt", "stale", strlen( "stale" ) + 1, false );
+		AddBufferToPak( GetPakFile(), "stale.txt", (void *)( "stale" ), strlen( "stale" ) + 1, false );
 
 		LoadMapFile (name);
 		SetModelNumbers ();
@@ -1411,7 +1411,7 @@ int RunVBSP( int argc, char **argv )
 		{
 			LoadBSPFile_FileSystemOnly (mapFile);
 			// Mark as stale since the lighting could be screwed with new ents.
-			AddBufferToPak( GetPakFile(), "stale.txt", "stale", strlen( "stale" ) + 1, false );
+			AddBufferToPak( GetPakFile(), "stale.txt", (void *)( "stale" ), strlen( "stale" ) + 1, false );
 		}
 
 		LoadMapFile (name);

@@ -87,7 +87,7 @@ void CTFItem::Drop( CTFPlayer *pPlayer, bool bVisible, bool bThrown /*= false*/,
 bool CTFItem::ShouldDraw()
 {
 	// If I'm carrying the flag in 1st person, don't draw it
-	if ( ToTFPlayer(GetMoveParent())->InFirstPersonView() )
+	if ( GetMoveParent() && ToTFPlayer(GetMoveParent())->InFirstPersonView() )
 		return false;
 
 	return BaseClass::ShouldDraw();
@@ -98,7 +98,7 @@ bool CTFItem::ShouldDraw()
 //-----------------------------------------------------------------------------
 ShadowType_t CTFItem::ShadowCastType()
 {
-	if ( ToTFPlayer(GetMoveParent())->ShouldDrawThisPlayer() )
+	if ( GetMoveParent() && ToTFPlayer(GetMoveParent())->ShouldDrawThisPlayer() )
 	{
 		// Using the viewmodel.
 		return SHADOWS_NONE;

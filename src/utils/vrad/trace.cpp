@@ -128,12 +128,20 @@ public:
 	{
 		int sign = TestSignSIMD( *pHitMask );
 		float addedCoverage[4];
+		alignas(16) float b0f[4];
+		alignas(16) float b1f[4];
+		alignas(16) float b2f[4];
+
+		_mm_store_ps( b0f, *b0 );
+		_mm_store_ps( b1f, *b1 );
+		_mm_store_ps( b2f, *b2 );
+
 		for ( int s = 0; s < 4; s++)
 		{
 			addedCoverage[s] = 0.0f;
 			if ( ( sign >> s) & 0x1 )
 			{
-				addedCoverage[s] = ComputeCoverageFromTexture( b0->m128_f32[s], b1->m128_f32[s], b2->m128_f32[s], hitID );
+				addedCoverage[s] = ComputeCoverageFromTexture( b0f[s], b0f[s], b2f[s], hitID );
 			}
 		}
 		m_coverage = AddSIMD( m_coverage, LoadUnalignedSIMD( addedCoverage ) );
@@ -169,7 +177,7 @@ void TestLine( const FourVectors& start, const FourVectors& stop,
 	{
 		visibility[i] = 1.0f;
 		if ( ( rt_result.HitIds[i] != -1 ) &&
-		     ( rt_result.HitDistance.m128_f32[i] < len.m128_f32[i] ) )
+		     ( SubFloat( rt_result.HitDistance, i ) < SubFloat( len, i ) ) )
 		{
 			visibility[i] = 0.0f;
 		}
@@ -373,7 +381,7 @@ void TestLine_DoesHitSky( FourVectors const& start, FourVectors const& stop,
 	{
 		aOcclusion[i] = 0.0f;
 		if ( ( rt_result.HitIds[i] != -1 ) &&
-		     ( rt_result.HitDistance.m128_f32[i] < len.m128_f32[i] ) )
+		     ( SubFloat( rt_result.HitDistance, i ) < SubFloat( len, i ) ) )
 		{
 			int id = g_RtEnv.OptimizedTriangleList[rt_result.HitIds[i]].m_Data.m_IntersectData.m_nTriangleID;
 			if ( !( id & TRACE_ID_SKY ) )

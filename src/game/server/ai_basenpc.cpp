@@ -7170,19 +7170,19 @@ void CAI_BaseNPC::AddRelationship( const char *pszRelationship, CBaseEntity *pAc
 		Disposition_t disposition = D_NU;
 		if ( dispositionString )
 		{
-			if (!stricmp(dispositionString,"D_HT"))
+			if (!Q_stricmp(dispositionString,"D_HT"))
 			{
 				disposition = D_HT;
 			}
-			else if (!stricmp(dispositionString,"D_FR"))
+			else if (!Q_stricmp(dispositionString,"D_FR"))
 			{
 				disposition = D_FR;
 			}
-			else if (!stricmp(dispositionString,"D_LI"))
+			else if (!Q_stricmp(dispositionString,"D_LI"))
 			{
 				disposition = D_LI;
 			}
-			else if (!stricmp(dispositionString,"D_NU"))
+			else if (!Q_stricmp(dispositionString,"D_NU"))
 			{
 				disposition = D_NU;
 			}

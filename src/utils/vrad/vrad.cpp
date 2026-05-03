@@ -363,7 +363,7 @@ MAKE FACES
 WindingFromFace
 =============
 */
-winding_t	*WindingFromFace (dface_t *f, Vector& origin )
+winding_t	*WindingFromFace (dface_t *f, const Vector& origin )
 {
 	int			i;
 	int			se;
@@ -464,7 +464,7 @@ void ProcessSkyCameras()
 	{
 		entity_t *e = &entities[i];
 		const char *name = ValueForKey (e, "classname");
-		if (stricmp (name, "sky_camera"))
+		if (Q_stricmp (name, "sky_camera"))
 			continue;
 
 		Vector origin;
@@ -2392,11 +2392,11 @@ int ParseCommandLine( int argc, char **argv, bool *onlydetail )
 		{
 			g_bStaticPropLighting = true;
 		}
-		else if ( !stricmp( argv[i], "-StaticPropNormals" ) )
+		else if ( !Q_stricmp( argv[i], "-StaticPropNormals" ) )
 		{
 			g_bShowStaticPropNormals = true;
 		}
-		else if ( !stricmp( argv[i], "-OnlyStaticProps" ) )
+		else if ( !Q_stricmp( argv[i], "-OnlyStaticProps" ) )
 		{
 			g_bOnlyStaticProps = true;
 		}
@@ -2599,14 +2599,14 @@ int ParseCommandLine( int argc, char **argv, bool *onlydetail )
 				return -1;
 			}
 		}
-		else if ( stricmp( argv[i], "-StopOnExit" ) == 0 )
+		else if ( Q_stricmp( argv[i], "-StopOnExit" ) == 0 )
 		{
 			g_bStopOnExit = true;
 		}
-		else if ( stricmp( argv[i], "-steam" ) == 0 )
+		else if ( Q_stricmp( argv[i], "-steam" ) == 0 )
 		{
 		}
-		else if ( stricmp( argv[i], "-allowdebug" ) == 0 )
+		else if ( Q_stricmp( argv[i], "-allowdebug" ) == 0 )
 		{
 			// Don't need to do anything, just don't error out.
 		}

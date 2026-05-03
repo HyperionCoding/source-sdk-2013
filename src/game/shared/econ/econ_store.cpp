@@ -1061,6 +1061,8 @@ static void InitStreamLocale( std::wostringstream &stream, ELanguage eLang, uint
 
 #ifdef _PS3
 	stream.imbue(std::locale(pszLocale)); // no exception for PS3
+#elif defined(__clang__)
+	stream.imbue( std::locale( pszLocale ) );
 #else
 	try
 	{

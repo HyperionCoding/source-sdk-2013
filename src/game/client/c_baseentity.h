@@ -28,6 +28,7 @@
 #include "predictableid.h"
 #endif
 #include "soundflags.h"
+#include "soundstartparams.h"
 #include "shareddefs.h"
 #include "networkvar.h"
 #include "interpolatedvar.h"

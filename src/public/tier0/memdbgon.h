@@ -16,7 +16,7 @@
 // SPECIAL NOTE #2: This must be the final include in a .cpp or .h file!!!
 
 // If debug build or ndebug and not already included MS custom alloc files, or already included this file
-#if (defined(_DEBUG) || !defined(_INC_CRTDBG)) || defined(MEMDBGON_H)
+#if (defined(_DEBUG) || !defined(_INC_CRTDBG)) || defined(MEMDBGON_H) || defined(__clang__)
 
 #include "basetypes.h"
 #ifdef _WIN32
